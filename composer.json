@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "SpecDoc\\Specificator\\Contracts\\Specification\\": ""
+            "SpecDoc\\Specificator\\Contracts\\": ""
         }
     },
     "minimum-stability": "dev",
