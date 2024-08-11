@@ -16,7 +16,9 @@
         }
     ],
     "require": {
-        "php": ">=7.1"
+        "php": ">=7.1",
+        "spec-doc/parser-contracts": "dev-main",
+        "spec-doc/factory-contracts": "dev-main"
     },
     "autoload": {
         "psr-4": {
