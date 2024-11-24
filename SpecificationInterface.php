@@ -7,6 +7,7 @@ namespace SpecDoc\Contract\Specification;
 use SpecDoc\Contract\Exception\NotSupportedExceptionInterface;
 use SpecDoc\Contract\Parser\ParserInterface;
 use SpecDoc\Contract\Builder\BuilderInterface;
+use SpecDoc\Contract\Rule\RuleInterface;
 
 /**
  * Specification interface. Responsible for the support of incoming content,
@@ -58,7 +59,7 @@ interface SpecificationInterface
      *
      * @param string $version
      *
-     * @return array
+     * @return array<RuleInterface>
      * @throws NotSupportedExceptionInterface
      */
     public function getRules(string $version = 'last'): array;
