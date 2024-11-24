@@ -6,7 +6,13 @@ namespace SpecDoc\Contract\Specification;
 
 use SpecDoc\Contract\Exception\NotSupportedExceptionInterface;
 use SpecDoc\Contract\Parser\ParserInterface;
+use SpecDoc\Contract\Builder\BuilderInterface;
 
+/**
+ * Specification interface. Responsible for the support of incoming content,
+ * the ability to update it within the specification, the rules of parsing and
+ * document building.
+ */
 interface SpecificationInterface
 {
     /**
@@ -24,7 +30,7 @@ interface SpecificationInterface
     public function supportVersions(): iterable;
 
     /**
-     * Returns whether this class supports the given resource.
+     * Returns a flag indicating whether the resource is supported.
      *
      * @param string $resource
      *
@@ -33,24 +39,27 @@ interface SpecificationInterface
     public function supports(string $resource): bool;
 
     /**
-     * Returns the parser for the specification. If a version is specified, returns an
-     * implementation for a specific version of the specification.
-     *
-     * @param string|null $version
+     * Returns the parser for the specification.
      *
      * @return ParserInterface
-     * @throws NotSupportedExceptionInterface If the specified version is not supported
      */
-    public function getParser(?string $version = null): ParserInterface;
+    public function getParser(): ParserInterface;
 
     /**
-     * Returns the builder for the specification. If a version is specified, returns an
-     * implementation for a specific version of the specification.
-     *
-     * @param string|null $version
+     * Returns the builder for the specification.
      *
      * @return BuilderInterface
-     * @throws NotSupportedExceptionInterface If the specified version is not supported
      */
-    public function getBuilder(?string $version = null): BuilderInterface;
+    public function getBuilder(): BuilderInterface;
+
+    /**
+     * Returns an array of content handling rules for the specification. If the specified version is missing,
+     * an exception is thrown.
+     *
+     * @param string $version
+     *
+     * @return array
+     * @throws NotSupportedExceptionInterface
+     */
+    public function getRules(string $version = 'last'): array;
 }
