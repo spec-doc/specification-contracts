@@ -17,14 +17,13 @@
     ],
     "require": {
         "php": ">=7.1",
-        "spec-doc/exception-contracts": "dev-main",
         "spec-doc/parser-contracts": "dev-main",
         "spec-doc/builder-contracts": "dev-main",
         "spec-doc/rule-contracts": "dev-main"
     },
     "autoload": {
         "psr-4": {
-            "SpecDoc\\Contract\\Specification\\": ""
+            "SpecDoc\\Contract\\": ""
         }
     },
     "minimum-stability": "dev",
