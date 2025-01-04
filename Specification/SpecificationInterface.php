@@ -7,7 +7,7 @@ namespace SpecDoc\Contract\Specification;
 use SpecDoc\Contract\Exception\NotSupportedExceptionInterface;
 use SpecDoc\Contract\Parser\ParserInterface;
 use SpecDoc\Contract\Builder\BuilderInterface;
-use SpecDoc\Contract\Rule\RuleInterface;
+use SpecDoc\Contract\Rule\RuleSetInterface;
 
 /**
  * Specification interface. Responsible for the support of incoming content,
@@ -26,7 +26,7 @@ interface SpecificationInterface
     /**
      * Returns a list of supported versions of the specification.
      *
-     * @return iterable
+     * @return iterable<RuleSetInterface>
      */
     public function supportVersions(): iterable;
 
@@ -54,13 +54,13 @@ interface SpecificationInterface
     public function getBuilder(): BuilderInterface;
 
     /**
-     * Returns an array of content handling rules for the specification. If the specified version is missing,
-     * an exception is thrown.
+     * Returns a set of content handling rules for the specification. If the specified version
+     * is missing, an exception is thrown.
      *
      * @param string $version
      *
-     * @return array<RuleInterface>
+     * @return RuleSetInterface
      * @throws NotSupportedExceptionInterface
      */
-    public function getRules(string $version = 'last'): array;
+    public function getRules(string $version = 'last'): RuleSetInterface;
 }
