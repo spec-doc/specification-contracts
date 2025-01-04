@@ -20,6 +20,7 @@
         "spec-doc/parser-contracts": "dev-main",
         "spec-doc/builder-contracts": "dev-main",
         "spec-doc/rule-contracts": "dev-main"
+
     },
     "autoload": {
         "psr-4": {

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SpecDoc\Contract\Specification;
 
+use SpecDoc\Contract\Builder\BuilderInterface;
 use SpecDoc\Contract\Exception\NotSupportedExceptionInterface;
 use SpecDoc\Contract\Parser\ParserInterface;
-use SpecDoc\Contract\Builder\BuilderInterface;
-use SpecDoc\Contract\Rule\RuleInterface;
+use SpecDoc\Contract\Rule\RuleSetInterface;
 
 /**
  * Specification interface. Responsible for the support of incoming content,
@@ -17,16 +17,16 @@ use SpecDoc\Contract\Rule\RuleInterface;
 interface SpecificationInterface
 {
     /**
-     * Returns the type of the specification.
+     * Returns the name of the specification.
      *
      * @return string
      */
-    public function getType(): string;
+    public function name(): string;
 
     /**
      * Returns a list of supported versions of the specification.
      *
-     * @return iterable
+     * @return iterable<string>
      */
     public function supportVersions(): iterable;
 
@@ -54,13 +54,41 @@ interface SpecificationInterface
     public function getBuilder(): BuilderInterface;
 
     /**
-     * Returns an array of content handling rules for the specification. If the specified version is missing,
-     * an exception is thrown.
+     * Sets the default version of the specification. If the type does not match, throws an exception.
+     *
+     * @param RuleSetInterface $version
+     *
+     * @return self
+     * @throws NotSupportedExceptionInterface
+     */
+    public function setDefaultVersion(RuleSetInterface $version): self;
+
+    /**
+     * Returns the default version of the specification.
+     *
+     * @return RuleSetInterface
+     */
+    public function getDefaultVersion(): RuleSetInterface;
+
+    /**
+     * Returns a set of rules for the requested specification version. If the version is missing, an
+     * exception is thrown.
      *
      * @param string $version
      *
-     * @return array<RuleInterface>
+     * @return RuleSetInterface
      * @throws NotSupportedExceptionInterface
      */
-    public function getRules(string $version = 'last'): array;
+    public function getVersion(string $version): RuleSetInterface;
+
+    /**
+     * Adds a version of the specification. If the specification type does not match, an exception is
+     * thrown.
+     *
+     * @param RuleSetInterface $version
+     *
+     * @return self
+     * @throws NotSupportedExceptionInterface
+     */
+    public function addVersion(RuleSetInterface $version): self;
 }
