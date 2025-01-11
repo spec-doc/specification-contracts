@@ -19,16 +19,16 @@ interface SpecificationInterface
     /**
      * Returns the name of the specification.
      *
-     * @return string
+     * @return non-empty-string
      */
     public function name(): string;
 
     /**
      * Returns a list of supported versions of the specification.
      *
-     * @return iterable<string>
+     * @return array<non-empty-string>
      */
-    public function supportVersions(): iterable;
+    public function versions(): array;
 
     /**
      * Returns a flag indicating whether the resource is supported.
@@ -40,35 +40,25 @@ interface SpecificationInterface
     public function supports(string $resource): bool;
 
     /**
-     * Returns the parser for the specification.
+     * Returns the specific parser for the specification, or null if not set.
      *
-     * @return ParserInterface
+     * @return null|ParserInterface
      */
-    public function getParser(): ParserInterface;
+    public function getParser(): ?ParserInterface;
 
     /**
-     * Returns the builder for the specification.
+     * Returns the specific builder for the specification, or null if not set.
      *
-     * @return BuilderInterface
+     * @return null|BuilderInterface
      */
-    public function getBuilder(): BuilderInterface;
+    public function getBuilder(): ?BuilderInterface;
 
     /**
-     * Sets the default version of the specification. If the type does not match, throws an exception.
+     * Returns the default version of the specification if set, or null otherwise.
      *
-     * @param RuleSetInterface $version
-     *
-     * @return self
-     * @throws NotSupportedExceptionInterface
+     * @return null|RuleSetInterface
      */
-    public function setDefaultVersion(RuleSetInterface $version): self;
-
-    /**
-     * Returns the default version of the specification.
-     *
-     * @return RuleSetInterface
-     */
-    public function getDefaultVersion(): RuleSetInterface;
+    public function getDefaultVersion(): ?RuleSetInterface;
 
     /**
      * Returns a set of rules for the requested specification version. If the version is missing, an
@@ -80,15 +70,4 @@ interface SpecificationInterface
      * @throws NotSupportedExceptionInterface
      */
     public function getVersion(string $version): RuleSetInterface;
-
-    /**
-     * Adds a version of the specification. If the specification type does not match, an exception is
-     * thrown.
-     *
-     * @param RuleSetInterface $version
-     *
-     * @return self
-     * @throws NotSupportedExceptionInterface
-     */
-    public function addVersion(RuleSetInterface $version): self;
 }
