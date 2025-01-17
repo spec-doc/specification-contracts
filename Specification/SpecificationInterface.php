@@ -26,9 +26,9 @@ interface SpecificationInterface
     /**
      * Returns a list of supported versions of the specification.
      *
-     * @return array<non-empty-string>
+     * @return iterable<non-empty-string>
      */
-    public function versions(): array;
+    public function versions(): iterable;
 
     /**
      * Returns a flag indicating whether the resource is supported.
