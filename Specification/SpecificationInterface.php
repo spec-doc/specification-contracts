@@ -7,6 +7,7 @@ namespace SpecDoc\Contract\Specification;
 use SpecDoc\Contract\Builder\BuilderInterface;
 use SpecDoc\Contract\Exception\NotSupportedExceptionInterface;
 use SpecDoc\Contract\Parser\ParserInterface;
+use SpecDoc\Contract\Reader\ReaderInterface;
 use SpecDoc\Contract\Rule\RuleSetInterface;
 
 /**
@@ -47,6 +48,15 @@ interface SpecificationInterface
     public function getParser(): ?ParserInterface;
 
     /**
+     * Sets the specific parser for the specification.
+     *
+     * @param ParserInterface $parser
+     *
+     * @return static
+     */
+    public function setParser(ParserInterface $parser): static;
+
+    /**
      * Returns the specific builder for the specification, or null if not set.
      *
      * @return null|BuilderInterface
@@ -54,11 +64,45 @@ interface SpecificationInterface
     public function getBuilder(): ?BuilderInterface;
 
     /**
+     * Sets the specific builder for the specification.
+     *
+     * @param BuilderInterface $builder
+     *
+     * @return static
+     */
+    public function setBuilder(BuilderInterface $builder): static;
+
+    /**
+     * Returns the specific reader for the specification, or null if not set.
+     *
+     * @return null|ReaderInterface
+     */
+    public function getReader(): ?ReaderInterface;
+
+    /**
+     * Sets the specific reader for the specification.
+     *
+     * @param ReaderInterface $reader
+     *
+     * @return static
+     */
+    public function setReader(ReaderInterface $reader): static;
+
+    /**
      * Returns the default version of the specification if set, or null otherwise.
      *
      * @return null|RuleSetInterface
      */
     public function getDefaultVersion(): ?RuleSetInterface;
+
+    /**
+     * Sets the default version of the specification.
+     *
+     * @param RuleSetInterface $version
+     *
+     * @return static
+     */
+    public function setDefaultVersion(RuleSetInterface $version): static;
 
     /**
      * Returns a set of rules for the requested specification version. If the version is missing, an
