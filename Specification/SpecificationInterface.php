@@ -32,13 +32,11 @@ interface SpecificationInterface
     public function versions(): iterable;
 
     /**
-     * Returns a flag indicating whether the resource is supported.
+     * Returns the list of file extensions supported by this specification.
      *
-     * @param string $resource
-     *
-     * @return bool
+     * @return iterable<non-empty-string>
      */
-    public function supports(string $resource): bool;
+    public function supportedExtensions(): iterable;
 
     /**
      * Returns the specific parser for the specification, or null if not set.
