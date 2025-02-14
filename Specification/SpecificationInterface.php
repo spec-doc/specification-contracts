@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SpecDoc\Contract\Specification;
 
 use SpecDoc\Contract\Exception\NotSupportedExceptionInterface;
+use SpecDoc\Contract\Reader\FileReaderInterface;
 use SpecDoc\Contract\Rule\RuleSetInterface;
 
 /**
@@ -45,4 +46,13 @@ interface SpecificationInterface
      * @throws NotSupportedExceptionInterface
      */
     public function getVersion(string $version): RuleSetInterface;
+
+    /**
+     * Returns the reader for the file extension. If there is no reader, returns null.
+     *
+     * @param non-empty-string $ext File extension
+     *
+     * @return FileReaderInterface|null
+     */
+    public function getReader(string $ext): ?FileReaderInterface;
 }
