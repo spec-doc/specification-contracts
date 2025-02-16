@@ -25,9 +25,9 @@ interface SpecificationInterface
     /**
      * Returns a list of supported versions of the specification.
      *
-     * @return iterable<non-empty-string>
+     * @return array<non-empty-string>
      */
-    public function versions(): iterable;
+    public function versions(): array;
 
     /**
      * Returns the default version of the specification.
@@ -46,6 +46,15 @@ interface SpecificationInterface
      * @throws NotSupportedExceptionInterface
      */
     public function getVersion(string $version): RuleSetInterface;
+
+    /**
+     *
+     *
+     * @param string $content
+     *
+     * @return string
+     */
+    public function analyze(string $content): string;
 
     /**
      * Returns the reader for the file extension. If there is no reader, returns null.
